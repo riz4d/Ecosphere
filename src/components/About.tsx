@@ -8,7 +8,7 @@ import { useRef } from 'react'
 
 
 interface ValueCardProps {
-  icon: React.ComponentType;
+  icon: React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
   index: number;
