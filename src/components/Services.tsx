@@ -4,7 +4,14 @@ import { motion } from 'framer-motion'
 import { Truck, MapPin, Book, Users, ShoppingBag } from 'lucide-react'
 import Link from 'next/link'
 
-const FeatureCard = ({ icon, title, description, link }) => (
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  link: string;
+}
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, link }) => (
   <motion.div
     className="bg-white p-6 rounded-lg shadow-md h-full flex flex-col justify-between"
     whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
