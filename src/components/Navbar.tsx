@@ -145,6 +145,8 @@ export function Navbarterms() {
           placeholder=""
           onPointerEnter={() => {}}
           onPointerLeave={() => {}}
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
         >
           {open ? (
             <XMarkIcon strokeWidth={2} className="h-6 w-6" />
