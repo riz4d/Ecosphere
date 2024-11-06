@@ -5,30 +5,7 @@ import { Leaf, Recycle, Users, Globe } from 'lucide-react'
 import Image from 'next/image'
 import { useRef } from 'react'
 
-interface TeamMemberProps {
-  name: string;
-  role: string;
-  image: string;
-}
 
-const TeamMember = ({ name, role, image }: TeamMemberProps) => (
-  <motion.div
-    className="flex flex-col items-center p-4"
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-  >
-    <Image
-      src={image}
-      alt={name}
-      width={150}
-      height={150}
-      className="rounded-full mb-4"
-    />
-    <h3 className="text-xl font-semibold text-green-800">{name}</h3>
-    <p className="text-gray-600">{role}</p>
-  </motion.div>
-)
 
 interface ValueCardProps {
   icon: React.ComponentType;
@@ -55,24 +32,6 @@ const ValueCard = ({ icon: Icon, title, description, index }: ValueCardProps) =>
   )
 }
 
-const AnimatedWord = ({ word }: { word: string }) => {
-  const letters = Array.from(word)
-  return (
-    <div className="inline-block">
-      {letters.map((letter, index) => (
-        <motion.span
-          key={index}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-          className="inline-block"
-        >
-          {letter}
-        </motion.span>
-      ))}
-    </div>
-  )
-}
 
 export default function AboutPage() {
   const ref = useRef(null)
@@ -80,6 +39,7 @@ export default function AboutPage() {
     target: ref,
     offset: ["start start", "end start"]
   })
+  
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
 
   return (
@@ -116,13 +76,15 @@ export default function AboutPage() {
               </motion.p>
             </div>
           </div>
+          
           <motion.div
             className="mt-12 flex flex-wrap justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.5 }}
           >
-            {['Innovate', 'Sustain', 'Empower'].map((word, index) => (
+            
+            {['Innovate', 'Sustain', 'Empower'].map((word) => (
               <motion.div
                 key={word}
                 className="bg-green-600 text-white px-6 py-3 rounded-full text-lg font-semibold"
@@ -178,7 +140,7 @@ export default function AboutPage() {
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-green-800 mb-12">Join Our Mission</h2>
           <p className="text-lg sm:text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
-            Together, we can make a significant impact on our planet's health. Start your eco-friendly journey with ECOSPHERE today.
+            Together, we can make a significant impact on our planet&apos;s health. Start your eco-friendly journey with ECOSPHERE today.
           </p>
           <motion.button
             className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg"

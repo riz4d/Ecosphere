@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Truck, Recycle, MapPin, Book, Users, ShoppingBag } from 'lucide-react'
+import { Truck, MapPin, Book, Users, ShoppingBag } from 'lucide-react'
 import Link from 'next/link'
 
 const FeatureCard = ({ icon, title, description, link }) => (
