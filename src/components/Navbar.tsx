@@ -31,6 +31,8 @@ function NavItem({ children, href }: NavItemProps) {
         placeholder=""
         onPointerEnter={() => {}}
         onPointerLeave={() => {}}
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}
       >
         {children}
       </Typography>
