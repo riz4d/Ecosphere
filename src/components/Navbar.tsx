@@ -94,6 +94,8 @@ export function Navbarterms() {
       placeholder=""
       onPointerEnter={() => {}}
       onPointerLeave={() => {}}
+      onPointerEnterCapture={() => {}}
+      onPointerLeaveCapture={() => {}}
       
     >
       <div className="container mx-auto flex items-center justify-between">
@@ -104,6 +106,8 @@ export function Navbarterms() {
           placeholder=""
           onPointerEnter={() => {}}
           onPointerLeave={() => {}}
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
         >
           Ecosphere
         </Typography>
@@ -113,7 +117,9 @@ export function Navbarterms() {
           <Link href="/register">
           <Button color={isScrolling ? "black" : "black"} variant="text" placeholder=""
         onPointerEnter={() => {}}
-        onPointerLeave={() => {}}>
+        onPointerLeave={() => {}}
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}>
             Register
           </Button>
           </Link>
@@ -124,6 +130,8 @@ export function Navbarterms() {
                 placeholder=""
                 onPointerEnter={() => {}}
                 onPointerLeave={() => {}}
+                onPointerEnterCapture={() => {}}
+                onPointerLeaveCapture={() => {}}
               >
                 Login
               </Button>
