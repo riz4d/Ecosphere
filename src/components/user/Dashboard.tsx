@@ -1,11 +1,14 @@
 'use client'
+
 import withAuth from '@/components/Auth'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from 'recharts'
-import { User, Package, Award, LogOut, ChevronRight, Menu, X, Bell, MapPin } from 'lucide-react'
+import { User, Package, Award, LogOut, ChevronRight, Menu, X, Bell, MapPin, ShoppingCart } from 'lucide-react'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+
 // Mock data for charts
 const ewasteData = [
   { name: 'Electronics', value: 400 },
@@ -24,11 +27,12 @@ const contributionData = [
 ]
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
+
 const recycledProducts = [
-  { id: 1, name: 'Refurbished RAM 8GB', points: 500, image: '/products/ram.jpg?height=100&width=100' },
-  { id: 2, name: 'Recycled 1TB HDD', points: 800, image: '/products/hdd.jpg?height=100&width=100' },
-  { id: 3, name: 'Eco-Friendly Mouse', points: 300, image: '/products/mouse.jpg?height=100&width=100' },
-  { id: 4, name: 'Upcycled Keyboard', points: 600, image: '/products/key.jpg?height=100&width=100' },
+  { id: 1, name: 'Refurbished RAM 8GB', points: 500, image: '/placeholder.svg?height=100&width=100' },
+  { id: 2, name: 'Recycled 1TB HDD', points: 800, image: '/placeholder.svg?height=100&width=100' },
+  { id: 3, name: 'Eco-Friendly Mouse', points: 300, image: '/placeholder.svg?height=100&width=100' },
+  { id: 4, name: 'Upcycled Keyboard', points: 600, image: '/placeholder.svg?height=100&width=100' },
 ]
 
 const recentOrders = [
@@ -47,6 +51,13 @@ const ebinLocations = [
   { id: 1, name: 'City Center E-Bin', lat: 40.7128, lng: -74.0060 },
   { id: 2, name: 'Tech Park E-Bin', lat: 40.7282, lng: -74.0776 },
   { id: 3, name: 'Green Square E-Bin', lat: 40.7589, lng: -73.9851 },
+]
+
+const marketplaceProducts = [
+  { id: 1, name: 'Recycled Laptop Stand', price: 1200, image: '/placeholder.svg?height=100&width=100' },
+  { id: 2, name: 'Upcycled Desk Organizer', price: 800, image: '/placeholder.svg?height=100&width=100' },
+  { id: 3, name: 'Eco-Friendly Phone Case', price: 500, image: '/placeholder.svg?height=100&width=100' },
+  { id: 4, name: 'Refurbished Bluetooth Speaker', price: 1500, image: '/placeholder.svg?height=100&width=100' },
 ]
 
 const UserDashboard = () =>{
@@ -75,11 +86,13 @@ const UserDashboard = () =>{
       return () => window.removeEventListener('resize', handleResize)
     }
   }, [])
-  const router = useRouter();
+
+  const router = useRouter()
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    router.push('/login');
-  };
+    localStorage.removeItem('accessToken')
+    router.push('/login')
+  }
+
   return (
     <div className="min-h-screen bg-green-50">
       {/* Header */}
@@ -95,7 +108,7 @@ const UserDashboard = () =>{
       <div className="flex h-[calc(100vh-4rem)] md:h-screen">
         {/* Sidebar */}
         <AnimatePresence>
-        {(isSidebarOpen || !isMobileView) && (
+          {(isSidebarOpen || !isMobileView) && (
             <motion.aside
               initial="closed"
               animate="open"
@@ -111,7 +124,7 @@ const UserDashboard = () =>{
                 </button>
               </div>
               <nav className="space-y-2">
-                {['Overview', 'Orders', 'Rewards', 'Profile', 'Ebin Finder'].map((item) => (
+                {['Overview', 'Orders', 'Rewards', 'Profile', 'Ebin Finder', 'Marketplace'].map((item) => (
                   <motion.button
                     key={item}
                     className={`flex items-center w-full text-left py-2 px-4 rounded-md ${
@@ -305,7 +318,13 @@ const UserDashboard = () =>{
                           delay: 0.1 * (product.id - 1),
                         }}
                       >
-                        <img src={product.image} alt={product.name} className="w-full h-32 object-cover mb-4 rounded" />
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          width={100}
+                          height={100}
+                          className="w-full h-32 object-cover mb-4 rounded"
+                        />
                         <h5 className="font-semibold mb-2">{product.name}</h5>
                         <p className="text-green-600 font-bold mb-2">{product.points} points</p>
                         <button className="bg-green-600 text-white px-4 py-2 rounded-full text-sm hover:bg-green-700 transition-colors">
@@ -375,6 +394,40 @@ const UserDashboard = () =>{
                       </ul>
                     </div>
                   </motion.div>
+                </div>
+              )}
+
+              {activeTab === 'marketplace' && (
+                <div>
+                  <h3 className="text-2xl font-bold mb-6">Marketplace</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {marketplaceProducts.map((product) => (
+                      <motion.div
+                        key={product.id}
+                        className="bg-white p-4 rounded-lg shadow-md"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.5,
+                          delay: 0.1 * (product.id - 1),
+                        }}
+                      >
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          width={100}
+                          height={100}
+                          className="w-full h-32 object-cover mb-4 rounded"
+                        />
+                        <h5 className="font-semibold mb-2">{product.name}</h5>
+                        <p className="text-green-600 font-bold mb-2">₹{product.price}</p>
+                        <button className="bg-green-600 text-white px-4 py-2 rounded-full text-sm hover:bg-green-700 transition-colors flex items-center justify-center w-full">
+                          <ShoppingCart className="mr-2" size={16} />
+                          Add to Cart
+                        </button>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               )}
             </motion.div>
