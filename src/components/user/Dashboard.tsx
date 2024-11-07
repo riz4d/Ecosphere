@@ -52,13 +52,9 @@ const ebinLocations = [
 export default function UserDashboard() {
   const [activeTab, setActiveTab] = useState('overview')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isMobileView, setIsMobileView] = useState(false)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [mapCenter, setMapCenter] = useState({ lat: 40.7128, lng: -74.0060 })
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -73,8 +69,12 @@ export default function UserDashboard() {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
 
   useEffect(() => {
-    // In a real application, you would get the user's location here
-    // and set it as the map center
+    if (typeof window !== 'undefined') {
+      const handleResize = () => setIsMobileView(window.innerWidth < 768)
+      handleResize() // Initial check
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   return (
@@ -88,12 +88,11 @@ export default function UserDashboard() {
           </button>
         </div>
       </header>
-          {(isSidebarOpen || (isClient && window.innerWidth >= 768)) && (
 
       <div className="flex h-[calc(100vh-4rem)] md:h-screen">
         {/* Sidebar */}
         <AnimatePresence>
-          {(isSidebarOpen || window.innerWidth >= 768) && (
+        {(isSidebarOpen || !isMobileView) && (
             <motion.aside
               initial="closed"
               animate="open"
