@@ -6,8 +6,8 @@ import axios from 'axios';
 
 import { ComponentType } from 'react';
 
-const withAuth = (WrappedComponent: ComponentType) => {
-    return (props: any) => {
+const withAuth = <P extends object>(WrappedComponent: ComponentType<P>) => {
+    const WithAuthComponent = (props: P) => {
         const router = useRouter();
 
         useEffect(() => {
@@ -22,6 +22,10 @@ const withAuth = (WrappedComponent: ComponentType) => {
 
         return <WrappedComponent {...props} />;
     };
+
+    WithAuthComponent.displayName = `WithAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+
+    return WithAuthComponent;
 };
 
 export default withAuth;

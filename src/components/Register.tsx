@@ -44,7 +44,9 @@ export default function RegistrationPage() {
         const data = await response.json()
         toast.error(data.message || 'Registration failed. Please try again.')
       }
-    } catch (error) {
+    } 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    catch (error) {
       toast.error('An error occurred. Please try again.')
     }
   }
