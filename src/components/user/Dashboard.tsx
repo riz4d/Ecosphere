@@ -54,6 +54,7 @@ const ebinLocations = [
 export default function UserDashboard() {
   const [activeTab, setActiveTab] = useState('overview')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [mapCenter, setMapCenter] = useState({ lat: 40.7128, lng: -74.0060 })
 
   const { isLoaded } = useJsApiLoader({
