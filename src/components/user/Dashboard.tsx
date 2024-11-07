@@ -54,6 +54,11 @@ export default function UserDashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [mapCenter, setMapCenter] = useState({ lat: 40.7128, lng: -74.0060 })
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -83,6 +88,7 @@ export default function UserDashboard() {
           </button>
         </div>
       </header>
+          {(isSidebarOpen || (isClient && window.innerWidth >= 768)) && (
 
       <div className="flex h-[calc(100vh-4rem)] md:h-screen">
         {/* Sidebar */}
