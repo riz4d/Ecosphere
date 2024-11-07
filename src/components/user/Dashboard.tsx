@@ -31,7 +31,6 @@ const recycledProducts = [
   { id: 4, name: 'Upcycled Keyboard', points: 600, image: '/products/key.jpg?height=100&width=100' },
 ]
 
-// Mock data for recent orders and notifications
 const recentOrders = [
   { id: 1, orderNumber: '#12345', status: 'In Transit', date: '2023-06-15' },
   { id: 2, orderNumber: '#12346', status: 'Delivered', date: '2023-06-10' },
@@ -44,7 +43,6 @@ const notifications = [
   { id: 3, message: 'You\'ve earned 100 reward points', date: '2023-06-12' },
 ]
 
-// Mock data for e-bin locations
 const ebinLocations = [
   { id: 1, name: 'City Center E-Bin', lat: 40.7128, lng: -74.0060 },
   { id: 2, name: 'Tech Park E-Bin', lat: 40.7282, lng: -74.0776 },
@@ -59,7 +57,7 @@ export default function UserDashboard() {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "YOUR_GOOGLE_MAPS_API_KEY" // Replace with your actual API key
+    googleMapsApiKey: "YOUR_GOOGLE_MAPS_API_KEY" 
   })
 
   const sidebarVariants = {
