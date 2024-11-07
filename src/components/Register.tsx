@@ -1,10 +1,54 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Leaf } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { toast } from 'react-hot-toast'
 
 export default function RegistrationPage() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [number, setNumber] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [passwordsMatch, setPasswordsMatch] = useState(true)
+  const router = useRouter()
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    
+    if (password !== confirmPassword) {
+      setPasswordsMatch(false)
+      return
+    }
+
+    try {
+      const response = await fetch('http://172.20.10.7/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password, number }),
+      })
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      if (data.status === true) {
+        toast.success('Registration successful!')
+        router.push('/login')
+      } else {
+        const data = await response.json()
+        toast.error(data.message || 'Registration failed. Please try again.')
+      }
+    } catch (error) {
+      toast.error('An error occurred. Please try again.')
+    }
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-green-50 px-4">
       <motion.div 
@@ -24,14 +68,20 @@ export default function RegistrationPage() {
             Join ECOSPHERE
           </h1>
         </motion.div>
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-            <input type="text" id="name" name="name" required
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
             />
@@ -42,7 +92,30 @@ export default function RegistrationPage() {
             transition={{ delay: 0.4, duration: 0.5 }}
           >
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input type="email" id="email" name="email" required
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            <label htmlFor="number" className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+            <input 
+              type="text" 
+              id="number" 
+              name="number" 
+              required
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
               className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
             />
@@ -53,10 +126,43 @@ export default function RegistrationPage() {
             transition={{ delay: 0.5, duration: 0.5 }}
           >
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-            <input type="password" id="password" name="password" required
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
             />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+            <input 
+              type="password" 
+              id="confirmPassword" 
+              name="confirmPassword" 
+              required
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value)
+                setPasswordsMatch(e.target.value === password)
+              }}
+              className={`block w-full px-3 py-2 bg-white border rounded-md text-sm shadow-sm placeholder-gray-400
+                focus:outline-none focus:ring-1 ${
+                  passwordsMatch
+                    ? 'border-gray-300 focus:border-green-500 focus:ring-green-500'
+                    : 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                }`}
+            />
+            {!passwordsMatch && (
+              <p className="mt-1 text-xs text-red-500">Passwords do not match</p>
+            )}
           </motion.div>
           <motion.button
             type="submit"
@@ -71,7 +177,7 @@ export default function RegistrationPage() {
           className="mt-6 text-center text-sm text-gray-600"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
         >
           Already have an account?{' '}
           <Link href="/login" className="font-medium text-green-600 hover:text-green-500">

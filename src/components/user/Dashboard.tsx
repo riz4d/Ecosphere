@@ -1,5 +1,5 @@
 'use client'
-
+import withAuth from '@/components/Auth'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from 'recharts'
@@ -49,7 +49,7 @@ const ebinLocations = [
   { id: 3, name: 'Green Square E-Bin', lat: 40.7589, lng: -73.9851 },
 ]
 
-export default function UserDashboard() {
+const UserDashboard = () =>{
   const [activeTab, setActiveTab] = useState('overview')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isMobileView, setIsMobileView] = useState(false)
@@ -380,3 +380,5 @@ export default function UserDashboard() {
     </div>
   )
 }
+
+export default withAuth(UserDashboard)

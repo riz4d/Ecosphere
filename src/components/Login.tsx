@@ -1,10 +1,47 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Leaf } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { toast } from 'react-hot-toast'
 
 export default function LoginPage() {
+  const [number, setNumber] = useState('')
+  const [password, setPassword] = useState('')
+  const router = useRouter()
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    
+    try {
+      const response = await fetch('http://172.20.10.7/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password, number }),
+      })
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      if (data.status === true) {
+        toast.success('Login successful!')
+        localStorage.setItem('accessToken', data.accessToken);
+        router.push('/dashboard')
+      } else {
+        const data = await response.json()
+        toast.error(data.message || 'Login failed. Please try again.')
+      }
+    }
+      catch (error) {
+        toast.error('An error occurred. Please try again.')
+      }
+    }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-green-50 px-4">
       <motion.div 
@@ -24,14 +61,20 @@ export default function LoginPage() {
             Welcome Back
           </h1>
         </motion.div>
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input type="email" id="email" name="email" required
+            <label htmlFor="number" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input 
+              type="text" 
+              id="number" 
+              name="number" 
+              required
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
               className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
             />
@@ -42,7 +85,13 @@ export default function LoginPage() {
             transition={{ delay: 0.4, duration: 0.5 }}
           >
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-            <input type="password" id="password" name="password" required
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
             />
