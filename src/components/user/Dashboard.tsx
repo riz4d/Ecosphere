@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from 'recharts'
 import { User, Package, Award, LogOut, ChevronRight, Menu, X, Bell, MapPin } from 'lucide-react'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
-
+import { useRouter } from 'next/navigation';
 // Mock data for charts
 const ewasteData = [
   { name: 'Electronics', value: 400 },
@@ -76,7 +76,11 @@ const UserDashboard = () =>{
       return () => window.removeEventListener('resize', handleResize)
     }
   }, [])
-
+  const router = useRouter();
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    router.push('/login');
+  };
   return (
     <div className="min-h-screen bg-green-50">
       {/* Header */}
@@ -130,6 +134,7 @@ const UserDashboard = () =>{
                 className="flex items-center w-full text-left py-2 px-4 rounded-md mt-8 hover:bg-green-700"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={handleLogout}
               >
                 <LogOut size={18} className="mr-2" />
                 Logout
