@@ -15,7 +15,7 @@ export default function LoginPage() {
     e.preventDefault()
     
     try {
-      const response = await fetch('http://172.20.10.7/api/login', {
+      const response = await fetch('https://ecosphere-backend-mu.vercel.app/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
