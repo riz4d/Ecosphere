@@ -16,6 +16,7 @@ import PlaceOrder from './PlaceOrder'
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('overview')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMobileView, setIsMobileView] = useState(false)
 
   const router = useRouter()
