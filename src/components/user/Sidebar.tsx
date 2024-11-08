@@ -6,6 +6,15 @@ const sidebarVariants = {
   closed: { x: '-100%' },
 }
 
+interface SidebarProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (isOpen: boolean) => void;
+  isMobileView: boolean;
+  handleLogout: () => void;
+}
+
 export default function Sidebar({
   activeTab,
   setActiveTab,
@@ -13,7 +22,7 @@ export default function Sidebar({
   setIsSidebarOpen,
   isMobileView,
   handleLogout
-}) {
+}: SidebarProps) {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
 
   return (
