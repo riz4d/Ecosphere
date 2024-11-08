@@ -17,7 +17,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Ecosphere",
-  description: "Register here",
+  description: "Explore our eco-friendly services and make a positive impact on the environment.",
 };
 
 export default function RootLayout({
