@@ -1,6 +1,24 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { Award } from 'lucide-react'
 import Image from 'next/image'
+import { initializeApp } from 'firebase/app'
+import { getDatabase, ref, onValue } from 'firebase/database'
+import { useState, useEffect } from 'react'
+
+const firebaseConfig = {
+  apiKey: "AIzaSyACfCmDYTQOT6rbkZJdqLryqIvYLtZWXmI",
+  authDomain: "ecosphere-ad059.firebaseapp.com",
+  databaseURL: "https://ecosphere-ad059-default-rtdb.firebaseio.com",
+  projectId: "ecosphere-ad059",
+  storageBucket: "ecosphere-ad059.firebasestorage.app",
+  messagingSenderId: "533056162099",
+  appId: "1:533056162099:web:895f4f1e961caceecb1646"
+}
+
+const app = initializeApp(firebaseConfig)
+const database = getDatabase(app)
 
 const recycledProducts = [
   { id: 1, name: 'Refurbished RAM 8GB', points: 500, image: '/placeholder.svg?height=100&width=100' },
@@ -10,6 +28,21 @@ const recycledProducts = [
 ]
 
 export default function Rewards() {
+  const [rewardPoints, setRewardPoints] = useState(0)
+
+  useEffect(() => {
+    const userId = localStorage.getItem('userid')
+    if (userId) {
+      const userRef = ref(database, `users/${userId}`)
+      onValue(userRef, (snapshot) => {
+        const userData = snapshot.val()
+        if (userData && userData.rewardPoints) {
+          setRewardPoints(userData.rewardPoints)
+        }
+      })
+    }
+  }, [])
+
   return (
     <div>
       <h3 className="text-2xl font-bold mb-6">Rewards</h3>
@@ -20,7 +53,7 @@ export default function Rewards() {
         className="bg-white p-6 rounded-lg shadow-md text-center mb-8"
       >
         <Award className="text-yellow-500 w-16 h-16 mx-auto mb-4" />
-        <p className="text-4xl font-bold text-yellow-600 mb-2">1,250</p>
+        <p className="text-4xl font-bold text-yellow-600 mb-2">{rewardPoints}</p>
         <p className="text-gray-600">Total Reward Points</p>
       </motion.div>
       <h4 className="text-xl font-semibold mb-4">Redeem Points for Recycled Products</h4>
@@ -45,7 +78,14 @@ export default function Rewards() {
             />
             <h5 className="font-semibold mb-2">{product.name}</h5>
             <p className="text-green-600 font-bold mb-2">{product.points} points</p>
-            <button className="bg-green-600 text-white px-4 py-2 rounded-full text-sm hover:bg-green-700 transition-colors">
+            <button 
+              className={`px-4 py-2 rounded-full text-sm transition-colors ${
+                rewardPoints >= product.points
+                  ? 'bg-green-600 text-white hover:bg-green-700'
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
+              disabled={rewardPoints < product.points}
+            >
               Redeem
             </button>
           </motion.div>
