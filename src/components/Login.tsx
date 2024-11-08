@@ -44,7 +44,7 @@ const LoginPage = () => {
 
     setIsLoading(true)
     try {
-      const response = await fetch(`http://172.20.10.7:80/api/login`, {
+      const response = await fetch(`http://ecosphere-backend-mu.vercel.app/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

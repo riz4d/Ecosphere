@@ -48,7 +48,7 @@ export default function RegistrationPage() {
 
     setIsLoading(true)
     try {
-      const response = await fetch(`http://172.20.10.7/api/register`, {
+      const response = await fetch(`http://ecosphere-backend-mu.vercel.app/api/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
