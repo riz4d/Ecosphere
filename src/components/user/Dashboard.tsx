@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Sidebar from './Sidebar'
 import Overview from './Overview'
@@ -15,6 +14,7 @@ import PlaceOrder from './PlaceOrder'
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('overview')
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMobileView, setIsMobileView] = useState(false)
@@ -26,12 +26,8 @@ export default function Dashboard() {
     router.push('/login')
   }
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
-
   return (
     <div className="min-h-screen bg-green-50">
-      {/* Header */}
-      
 
       <div className="flex h-[calc(100vh-4rem)] md:h-screen">
         <Sidebar
