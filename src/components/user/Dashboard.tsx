@@ -31,22 +31,12 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-green-50">
       {/* Header */}
-      <header className="bg-green-800 text-white p-4 md:hidden">
-        <div className="flex justify-between items-center">
-          <h1 className="text-xl font-bold">Dashboard</h1>
-          <button onClick={toggleSidebar}>
-            <Menu size={24} />
-          </button>
-        </div>
-      </header>
+      
 
       <div className="flex h-[calc(100vh-4rem)] md:h-screen">
         <Sidebar
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          isSidebarOpen={isSidebarOpen}
-          setIsSidebarOpen={setIsSidebarOpen}
-          isMobileView={isMobileView}
           handleLogout={handleLogout}
         />
 
