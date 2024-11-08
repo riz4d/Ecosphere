@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Leaf } from 'lucide-react'
-
+import Link from 'next/link'
 export default function HeroSection() {
   const [positions, setPositions] = useState<{ x: number; y: number; scale: number; rotate: number }[]>([]);
 
@@ -78,6 +78,8 @@ export default function HeroSection() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 1.2 }}
         >
+          <Link 
+          href={"login"}>
           <motion.button
             className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-green-700 transition-colors shadow-lg"
             whileHover={{ scale: 1.05 }}
@@ -85,6 +87,7 @@ export default function HeroSection() {
           >
             Get Started
           </motion.button>
+          </Link>
         </motion.div>
       </div>
 

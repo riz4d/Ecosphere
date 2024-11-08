@@ -86,6 +86,7 @@ export default function AboutSection() {
           link="/about"
         />
       </div>
+      
     </motion.section>
     
   )
