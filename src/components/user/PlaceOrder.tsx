@@ -24,7 +24,7 @@ export default function PlaceOrder() {
       orderData.userId = userId;
     }
     try {
-      const response = await fetch('https://ecosphere-backend-mu.vercel.app/api/placeorder', {
+      const response = await fetch('http://172.20.10.7/api/placeorder', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
