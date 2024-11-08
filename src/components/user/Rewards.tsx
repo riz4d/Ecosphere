@@ -21,10 +21,10 @@ const app = initializeApp(firebaseConfig)
 const database = getDatabase(app)
 
 const recycledProducts = [
-  { id: 1, name: 'Refurbished RAM 8GB', points: 500, image: '/placeholder.svg?height=100&width=100' },
-  { id: 2, name: 'Recycled 1TB HDD', points: 800, image: '/placeholder.svg?height=100&width=100' },
-  { id: 3, name: 'Eco-Friendly Mouse', points: 300, image: '/placeholder.svg?height=100&width=100' },
-  { id: 4, name: 'Upcycled Keyboard', points: 600, image: '/placeholder.svg?height=100&width=100' },
+  { id: 1, name: 'Refurbished RAM 8GB', points: 500, image: '/products/ram.jpg?height=100&width=100' },
+  { id: 2, name: 'Recycled 1TB HDD', points: 800, image: '/products/hdd.jpg?height=100&width=100' },
+  { id: 3, name: 'Eco-Friendly Mouse', points: 300, image: '/products/mouse.jpg?height=100&width=100' },
+  { id: 4, name: 'Upcycled Keyboard', points: 600, image: '/products/key.jpg?height=100&width=100' },
 ]
 
 export default function Rewards() {

@@ -3,10 +3,10 @@ import { ShoppingCart } from 'lucide-react'
 import Image from 'next/image'
 
 const marketplaceProducts = [
-  { id: 1, name: 'Recycled Laptop Stand', price: 1200, image: '/placeholder.svg?height=100&width=100' },
-  { id: 2, name: 'Upcycled Desk Organizer', price: 800, image: '/placeholder.svg?height=100&width=100' },
-  { id: 3, name: 'Eco-Friendly Phone Case', price: 500, image: '/placeholder.svg?height=100&width=100' },
-  { id: 4, name: 'Refurbished Bluetooth Speaker', price: 1500, image: '/placeholder.svg?height=100&width=100' },
+  { id: 1, name: 'Refurbished RAM 8GB', points: 500, image: '/products/ram.jpg?height=100&width=100' },
+  { id: 2, name: 'Recycled 1TB HDD', points: 800, image: '/products/hdd.jpg?height=100&width=100' },
+  { id: 3, name: 'Eco-Friendly Mouse', points: 300, image: '/products/mouse.jpg?height=100&width=100' },
+  { id: 4, name: 'Upcycled Keyboard', points: 600, image: '/products/key.jpg?height=100&width=100' },
 ]
 
 export default function Marketplace() {
