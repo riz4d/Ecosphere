@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { LogOut, ChevronRight, Menu, X } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Sidebar from './Sidebar'
 import Overview from './Overview'
@@ -32,7 +32,7 @@ export default function Dashboard() {
       {/* Header */}
       <header className="bg-green-800 text-white p-4 md:hidden">
         <div className="flex justify-between items-center">
-          <h1 className="text-xl font-bold">ECOSPHERE Dashboard</h1>
+          <h1 className="text-xl font-bold">Dashboard</h1>
           <button onClick={toggleSidebar}>
             <Menu size={24} />
           </button>
