@@ -141,7 +141,7 @@ export default function RegistrationPage() {
             <PhoneInput
               international
               countryCallingCodeEditable={false}
-              defaultCountry="AE"
+              defaultCountry="IN"
               value={phoneNumber}
               onChange={handlePhoneChange}
               className="mt-1"
