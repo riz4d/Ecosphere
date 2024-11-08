@@ -15,6 +15,9 @@ const withAuth = <P extends object>(WrappedComponent: ComponentType<P>) => {
             console.log(accessToken);
             if (!accessToken) {
                 router.replace('/login');
+            }
+            else if(accessToken){
+                router.replace('/dashboard');
             } else {
                 axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
             }
