@@ -61,7 +61,9 @@ export default function PlaceOrder() {
         transition={{ duration: 0.5 }}
         className="text-center py-12"
       >
+        
         <h3 className="text-2xl font-bold mb-4">Order Successfully Placed!</h3>
+
         <p className="text-lg text-gray-600 mb-8">Thank you for contributing to e-waste recycling. We&apos;ll be in touch soon with further details.</p>
         <Button 
           onClick={() => setOrderPlaced(false)} 
