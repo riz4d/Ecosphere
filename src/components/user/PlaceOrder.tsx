@@ -39,7 +39,7 @@ export default function PlaceOrder() {
       setOrderPlaced(true)
       toast({
         title: "Order Placed Successfully!",
-        description: "Thank you for contributing to e-waste recycling. We'll be in touch soon.",
+        description: "Thank you for contributing to e-waste recycling. We&apos;ll be in touch soon.",
       })
     } catch (error) {
       console.error('Error placing order:', error)
