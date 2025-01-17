@@ -3,8 +3,8 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 from flask_cors import CORS
 import pyrebase
 from mail import send_mail
-import modules.firebase import firebase_config
-import modules.config import Debug, Host, Port
+from modules.firebase import firebase_config
+from modules.config import Debug, Host, Port
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'riza'
 jwt = JWTManager(app)
