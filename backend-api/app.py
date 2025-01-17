@@ -3,21 +3,13 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 from flask_cors import CORS
 import pyrebase
 from mail import send_mail
-
+import modules.firebase import firebase_config
+import modules.config import Debug, Host, Port
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = 'rizaS'
+app.config['JWT_SECRET_KEY'] = 'riza'
 jwt = JWTManager(app)
 CORS(app)
 
-firebase_config = {
-    "apiKey": "your-api-key",
-    "authDomain": "your-auth-domain",
-    "databaseURL": "your-database-url",
-    "projectId": "your-project-id",
-    "storageBucket": "your-storage-bucket",
-    "messagingSenderId": "your-messaging-sender-id",
-    "appId": "your-app-id"
-}
 
 firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
@@ -104,4 +96,4 @@ def protected():
     return jsonify(message="This is a protected route"), 200
 
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0',port=80)
+    app.run(debug=Debug, host=Host, port=Port)
