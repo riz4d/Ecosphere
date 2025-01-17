@@ -8,13 +8,13 @@ import { getDatabase, ref, onValue } from 'firebase/database'
 import { useState, useEffect } from 'react'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyACfCmDYTQOT6rbkZJdqLryqIvYLtZWXmI",
-  authDomain: "ecosphere-ad059.firebaseapp.com",
-  databaseURL: "https://ecosphere-ad059-default-rtdb.firebaseio.com",
-  projectId: "ecosphere-ad059",
-  storageBucket: "ecosphere-ad059.firebasestorage.app",
-  messagingSenderId: "533056162099",
-  appId: "1:533056162099:web:895f4f1e961caceecb1646"
+  apiKey: "your-api-key",
+  authDomain: "your-auth-domain",
+  databaseURL: "your-database-url",
+  projectId: "your-project-id",
+  storageBucket: "your-storage-bucket",
+  messagingSenderId: "your-messaging-sender-id",
+  appId: "your-app-id"
 }
 
 const app = initializeApp(firebaseConfig)

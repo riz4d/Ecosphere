@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion'
 import { BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from 'recharts'
 import { Bell } from 'lucide-react'
-
-// Mock data (you can move this to a separate file)
 const ewasteData = [
   { name: 'Electronics', value: 400 },
   { name: 'Batteries', value: 300 },
@@ -110,8 +108,6 @@ export default function Overview() {
           ))}
         </div>
       </motion.div>
-
-      {/* Notifications */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

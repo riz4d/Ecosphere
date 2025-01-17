@@ -5,8 +5,6 @@ import { Leaf, Recycle, Users, Globe } from 'lucide-react'
 import Image from 'next/image'
 import { useRef } from 'react'
 
-
-
 interface ValueCardProps {
   icon: React.ComponentType<{ className?: string }>;
   title: string;

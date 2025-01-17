@@ -62,15 +62,12 @@ export default function Sidebar({ activeTab, setActiveTab, handleLogout }: Sideb
 
   return (
     <>
-      {/* Desktop Sidebar */}
       <aside className="hidden md:block w-64 bg-green-800 text-white p-6 h-screen">
         <div className="mb-10">
           <h2 className="text-2xl font-bold">Dashboard</h2>
         </div>
         <NavContent />
       </aside>
-
-      {/* Mobile Top Navigation */}
       <nav className="md:hidden fixed top-0 left-0 right-0 bg-green-800 text-white p-4 z-50 flex justify-between items-center">
         <h2 className="text-xl font-bold">Dashboard</h2>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -84,8 +81,6 @@ export default function Sidebar({ activeTab, setActiveTab, handleLogout }: Sideb
           </SheetContent>
         </Sheet>
       </nav>
-
-      {/* Spacer for content below mobile nav */}
       <div className="md:hidden h-16"></div>
     </>
   )

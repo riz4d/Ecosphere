@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from 'recharts'
 import { User, Package, Award, LogOut, ChevronRight, Menu, X } from 'lucide-react'
 
-// Mock data for charts
 const ewasteData = [
   { name: 'Electronics', value: 400 },
   { name: 'Batteries', value: 300 },
@@ -24,7 +23,6 @@ const contributionData = [
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 
-// Mock data for recycled products
 const recycledProducts = [
   { id: 1, name: 'Refurbished RAM 8GB', points: 500, image: '/placeholder.svg?height=100&width=100' },
   { id: 2, name: 'Recycled 1TB HDD', points: 800, image: '/placeholder.svg?height=100&width=100' },
@@ -44,12 +42,10 @@ export default function UserDashboard() {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
 
   useEffect(() => {
-    // Add any necessary side effects here
   }, [])
 
   return (
     <div className="min-h-screen bg-green-50">
-      {/* Header */}
       <header className="bg-green-800 text-white p-4 md:hidden">
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-bold">ECOSPHERE Dashboard</h1>
@@ -60,7 +56,6 @@ export default function UserDashboard() {
       </header>
 
       <div className="flex h-[calc(100vh-4rem)] md:h-screen">
-        {/* Sidebar */}
         <AnimatePresence>
           {(isSidebarOpen || typeof window !== 'undefined' && window.innerWidth >= 768) && (
             <motion.aside
@@ -107,8 +102,6 @@ export default function UserDashboard() {
             </motion.aside>
           )}
         </AnimatePresence>
-
-        {/* Main Content */}
         <main className="flex-1 p-4 md:p-8 overflow-y-auto">
           <AnimatePresence mode="wait">
             <motion.div

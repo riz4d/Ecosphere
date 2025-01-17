@@ -81,7 +81,6 @@ export function Navbarterms() {
   }, []);
 
   const handlePointerEnter = () => {
-    // Add your pointer enter logic here
   };
 
   return (
@@ -89,7 +88,7 @@ export function Navbarterms() {
       shadow={false}
       fullWidth
       blurred={true}
-      color={isScrolling ? "white" : "transparent"} // Change this to your desired solid color
+      color={isScrolling ? "white" : "transparent"}
       className="fixed top-0 z-50 border-0"
       placeholder=""
       onPointerEnter={() => {}}

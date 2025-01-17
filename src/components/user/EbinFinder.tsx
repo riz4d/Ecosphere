@@ -4,9 +4,9 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
 import { useState } from 'react'
 
 const ebinLocations = [
-  { id: 1, name: 'City Center E-Bin', lat: 40.7128, lng: -74.0060 },
+  { id: 1, name: 'Bengaluru E-Bin', lat: 40.7128, lng: -74.0060 },
   { id: 2, name: 'Tech Park E-Bin', lat: 40.7282, lng: -74.0776 },
-  { id: 3, name: 'Green Square E-Bin', lat: 40.7589, lng: -73.9851 },
+  { id: 3, name: 'Chennai E-Bin', lat: 40.7589, lng: -73.9851 },
 ]
 
 export default function EbinFinder() {
